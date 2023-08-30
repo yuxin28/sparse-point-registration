@@ -1,6 +1,6 @@
 from dSPR import *
 import open3d as o3d
-from visualize import draw_registration_result
+from visualize import *
 from data_processing import *
 from generatepoints import *
 import matplotlib.pyplot as plt
@@ -19,11 +19,11 @@ threshold = 0.02
 # B = add_outliers(B, 0.1)
 # draw_registration_result(B, A_subset, T_orig)
 
-T = dSPR(B, A, iter_num=100, threshold = threshold, angel=360)
+# T = dSPR(B, A, iter_num=100, threshold = threshold, angel=360)
 
-print(o3d.pipelines.registration.evaluate_registration(B, A_subset, threshold, T))
-o3d.visualization.draw_geometries([A, B])
-draw_registration_result(B, A, T)
-draw_registration_result(B, A_subset, T)
+print(o3d.pipelines.registration.evaluate_registration(B, A_subset, threshold, T_orig))
+draw_origin(B, A_subset)
+draw_registration_result(B, A, T_orig)
+draw_registration_result(B, A_subset, T_orig)
 
 # print(o3d.pipelines.registration.evaluate_registration(B, A_subset, 0.05, T_orig))    
